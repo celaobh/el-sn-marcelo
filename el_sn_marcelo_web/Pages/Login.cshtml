@@ -1,0 +1,111 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+<br />
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-cliente" role="tab" aria-controls="nav-cliente" aria-selected="true">Sou Cliente</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-operador" role="tab" aria-controls="nav-operador" aria-selected="false">Sou Operador</a>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-cliente" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br />
+        <div id="warningCliente" class="alert alert-warning" role="alert" style="display:none">
+
+        </div>
+        <br />
+        <form id="formLoginCliente">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="exampleInputEmail1">CPF</label>
+                <input type="text" class="form-control cpf" id="txtCPF" aria-describedby="" placeholder="CPF">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input type="password" class="form-control senha" id="txtSenhaCliente" placeholder="Senha">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btnSubmitLogin1">Login</button>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="nav-operador" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <br />
+        <div id="warningOperador" class="alert alert-warning" role="alert" style="display:none">
+        </div>
+        <br />
+        <form id="formLoginOperador">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="exampleInputEmail1">Matrícula</label>
+                <input type="text" class="form-control" id="txtMatricula" placeholder="Matrícula">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input type="password" class="form-control senha" id="txtSenhaOperador" placeholder="Senha">
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnSubmitLogin2">Login</button>
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+    $("#formLoginCliente").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningCliente').hide();
+        $.ajax({
+            method: "POST",
+            url: "../Usuario/Autenticar",
+            async: true,
+            datatype: 'json',
+            data: { cpf: $("#txtCPF").val(), senha: $("#txtSenhaCliente").val() }
+        })
+            .done(function (obj) {
+                modal_off();
+                if (obj.success) {
+                    location = "/";
+                } else {
+                    $('#warningCliente').html(obj.msg);
+                    $('#warningCliente').show();
+                }
+            });
+
+    });
+
+
+    $("#formLoginOperador").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningOperador').hide();
+        $.ajax({
+            method: "POST",
+            url: "../Usuario/Autenticar",
+            async: true,
+            datatype: 'json',
+            data: { matricula: $("#txtMatricula").val(), senha: $("#txtSenhaOperador").val() }
+        })
+            .done(function (obj) {
+                debugger;
+                modal_off();
+                if (obj.success) {
+                    location = "/";
+                } else {
+                    $('#warningOperador').html(obj.msg);
+                    $('#warningOperador').show();
+                }
+            });
+
+    });
+
+    $(document).ready(function () {
+
+
+    });
+
+</script>

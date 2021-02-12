@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>el_sn_marcelo_api_cadastro</name>
+    </assembly>
+    <members>
+        <member name="M:el_sn_marcelo_api_cadastro.Controllers.ClienteController.Post(el_sn_marcelo_api_cadastro_infrastructure.Models.Request.Cliente)">
+            <summary>
+            Cria um usuario
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:el_sn_marcelo_api_cadastro.Controllers.OperadorController.Post(el_sn_marcelo_api_cadastro_infrastructure.Models.Request.Operador)">
+            <summary>
+            Cria um usuario
+            </summary>
+            <param name="value"></param>
+        </member>
+    </members>
+</doc>

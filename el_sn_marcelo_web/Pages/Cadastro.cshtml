@@ -1,0 +1,138 @@
+﻿@page
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Cadastro</h1>
+<br />
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-cliente" role="tab" aria-controls="nav-cliente" aria-selected="true">Sou Cliente</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-operador" role="tab" aria-controls="nav-operador" aria-selected="false">Sou Operador</a>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-cliente" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br />
+        <div id="warningCadastroCliente" class="alert alert-warning" role="alert" style="display:none">
+
+        </div>
+        <br />
+        <form id="formCadastroCliente">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nome</label>
+                <input type="text" class="form-control" name="nome" id="txtNomeCliente" aria-describedby="" placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">CPF</label>
+                <input type="text" class="form-control cpf" name="cpf" id="txtCPF" aria-describedby="" placeholder="CPF">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Aniversário</label>
+                <input type="date" class="form-control" name="aniversario" id="txtAniversarioCliente" placeholder="Aniversário">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">CEP</label>
+                <input type="text" class="form-control cep" name="cep" id="txtCEPCliente" placeholder="CEP">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Logradouro</label>
+                <input type="text" class="form-control" name="logradouro" id="txtLogradouroCliente" placeholder="Logradouro">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Número</label>
+                <input type="number" class="form-control" name="numero" id="txtNumeroCliente" placeholder="Número">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Complemento</label>
+                <input type="text" class="form-control" name="complemento" id="txtComplementoCliente" placeholder="Complemento">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Cidade</label>
+                <input type="text" class="form-control" name="cidade" id="txtCidadeCliente" placeholder="Cidade">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Estado</label>
+                <input type="text" class="form-control" name="estado" id="txtEstadoCliente" placeholder="Estado">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input type="password" class="form-control senha" name="senha" id="txtSenhaCliente" placeholder="Senha">
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnCadastroCliente">Cadastrar</button>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="nav-operador" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <br />
+        <div id="warningCadastroOperador" class="alert alert-warning" role="alert" style="display:none">
+
+        </div>
+        <br />
+        <form id="formCadastroOperador">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nome</label>
+                <input type="text" class="form-control" name="nome" id="txtNomeOperador" aria-describedby="" placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Senha</label>
+                <input type="password" class="form-control" name="senha" id="txtSenhaOperador" placeholder="Senha">
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnCadastroOperador">Cadastrar</button>
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+
+    $("#formCadastroCliente").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningCadastroCliente').hide();
+        $.ajax({
+            method: "POST",
+            url: "../Usuario/CadastrarCliente",
+            data: $('#formCadastroCliente').serialize()
+        })
+            .done(function (obj) {
+                modal_off();
+                if (obj.success) {
+                    location = obj.url;
+                } else {
+                    $('#warningCadastroCliente').html(obj.msg);
+                    $('#warningCadastroCliente').show();
+                }
+            });
+
+    });
+
+
+     $("#formCadastroOperador").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningCadastroOperador').hide();
+        $.ajax({
+            method: "POST",
+            url: "../Usuario/CadastrarOperador",
+            data: $('#formCadastroOperador').serialize()
+        })
+            .done(function (obj) {
+                modal_off();
+                if (obj.success) {
+                    location = obj.url;
+                } else {
+                    $('#warningCadastroOperador').html(obj.msg);
+                    $('#warningCadastroOperador').show();
+                }
+            });
+
+    });
+
+    $(document).ready(function () {
+
+
+    });
+
+</script>
