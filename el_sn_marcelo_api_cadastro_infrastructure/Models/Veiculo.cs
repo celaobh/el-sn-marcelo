@@ -28,6 +28,7 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Models
         }
 
         public int id { get; set; }
+        public int id_marca { get; set; }
         public string nome { get; set; }
     }
 

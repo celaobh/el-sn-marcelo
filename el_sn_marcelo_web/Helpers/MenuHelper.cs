@@ -19,7 +19,7 @@ namespace el_sn_marcelo_web.Helpers
                             </a>
                             <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                                 <a class='dropdown-item' href='/Cadastros/Marca'>Marcas</a>
-                                <a class='dropdown-item' href='#'>Modelos</a>
+                                <a class='dropdown-item' href='/Cadastros/Modelo'>Modelos</a>
                                 <a class='dropdown-item' href='#'>Veiculos</a>
                             </div>
                         </li>";

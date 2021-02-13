@@ -1,0 +1,144 @@
+﻿@page
+@model el_sn_marcelo_web.Pages.Cadastros.ModeloModel
+@{
+    ViewData["Title"] = "Modelo";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<br />
+<h1>Modelo</h1>
+<br />
+<div class="tab-content" id="nav-tabContent">
+
+    <br />
+    <div id="warningCadastroModelo" class="alert alert-warning" role="alert" style="display:none">
+
+    </div>
+    <br />
+    <form id="formCadastroModelo">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nome</label>
+            <input type="text" class="form-control" name="nome" id="txtNomeModelo" aria-describedby="" placeholder="Nome">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Marca</label>
+            <select class="form-control" name="id_marca" id="ddlIdMarca">
+                <option value="">- Selecione -</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnCadastroModelo">Cadastrar</button>
+    </form>
+    <br />
+    <table id="tableModelos" class="table" style="display:none">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+
+    $("#formCadastroModelo").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningCadastroModelo').hide();
+        $.ajax({
+            method: "POST",
+            url: "../Modelo/CadastrarModelo",
+            async: true,
+            datatype: 'json',
+            data: $('#formCadastroModelo').serialize()
+        })
+            .done(function (obj) {
+                modal_off();
+                if (obj.success) {
+                    clear();
+                    ListarMarcas();
+                } else {
+                    $('#warningCadastroMarca').html(obj.msg);
+                    $('#warningCadastroMarca').show();
+                }
+            });
+
+    });
+
+    $("#ddlIdMarca").on("change", function () {
+        var selected = $('#ddlIdMarca').find(":selected").val();
+        if(selected != "")
+            ListarModelos($('#ddlIdMarca').find(":selected").val());
+        else
+            $("#tableModelos tbody").html("");
+
+    })
+
+    $(document).ready(function () {
+        ListarMarcas();
+
+    });
+
+    function ListarMarcas() {
+        $('#ddlIdMarca')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="">- Selecione -</option>')
+            .val('');
+        $.ajax({
+            method: "GET",
+            url: "../Marca/ListarMarcas",
+            async: true,
+            datatype: 'json',
+        })
+            .done(function (obj) {
+                debugger;
+                $.each(obj.obj, function (index, value) {
+                    var o = new Option(value.nome, value.id);
+                    $(o).html(value.nome);
+                    $("#ddlIdMarca").append(o);
+                });
+            });
+
+    }
+
+    function ListarModelos(id_marca) {
+        $("#tableModelos tbody").html("");
+        $.ajax({
+            method: "GET",
+            url: "../Modelo/ListarModelos",
+            async: true,
+            data: { id_marca: id_marca }
+        })
+            .done(function (obj) {
+                debugger;
+                $.each(obj.obj, function (index, value) {
+                    $("#tableModelos tbody").append("<tr><td>" + value.id + "</td><td>" + value.nome + "</td></tr>");
+                });
+
+                if ($("#tableModelos tbody").html().length > 0)
+                    $("#tableModelos").show();
+            });
+
+    }
+
+    function clear() {
+
+        $("input").each(function (item) {
+            $(this).val("");
+        });
+
+        $('#ddlIdMarca')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="">- Selecione -</option>')
+            .val('');
+
+         $("#tableModelos tbody").html("");
+
+    }
+
+
+</script>

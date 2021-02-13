@@ -10,11 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "el_sn_marcelo_web", "el_sn_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "el_sn_marcelo_api_cadastro", "el_sn_marcelo_api_cadastro\el_sn_marcelo_api_cadastro.csproj", "{AAB3CC31-CDD6-4208-8308-90EA889527CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API DE CADASTRO", "API DE CADASTRO", "{82A03C60-CCFA-4A13-8513-3D128194956E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{82A03C60-CCFA-4A13-8513-3D128194956E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "el_sn_marcelo_api_cadastro_application", "el_sn_marcelo_api_cadastro_application\el_sn_marcelo_api_cadastro_application.csproj", "{21002FD3-BCF3-4D89-B719-B85C10029CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "el_sn_marcelo_api_cadastro_infrastructure", "el_sn_marcelo_api_cadastro_infrastructure\el_sn_marcelo_api_cadastro_infrastructure.csproj", "{D2826CB1-2B2D-436F-A2FF-D601438C16A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "el_sn_marcelo_api_cadastro_infrastructure", "el_sn_marcelo_api_cadastro_infrastructure\el_sn_marcelo_api_cadastro_infrastructure.csproj", "{D2826CB1-2B2D-436F-A2FF-D601438C16A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
