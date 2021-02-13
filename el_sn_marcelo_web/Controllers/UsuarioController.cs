@@ -65,7 +65,8 @@ namespace el_sn_marcelo_web.Controllers
                 {
                     new Claim("user", usuario.nome),
                     new Claim("id", usuario.id.ToString()),
-                    new Claim("role", usuario.role)
+                    new Claim("role", usuario.role),
+                    new Claim("token",usuario.token)
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies", "user", "role")));

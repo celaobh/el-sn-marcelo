@@ -40,5 +40,6 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Models
 
         public int id { get; set; }
         public string nome { get; set; }
+        public string logotipo { get; set; }
     }
 }

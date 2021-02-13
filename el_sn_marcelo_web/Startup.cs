@@ -15,18 +15,9 @@ namespace el_sn_marcelo_web
 {
     public class Startup
     {
-        SqliteConnection conn;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //if (conn == null)
-            //{
-            //    conn = new SqliteConnection("Data Source=:memory:");
-            //    conn.Open();
-            //}
-            //var db = new DBInitializer();
-            //db.CriarTabelas();
-            //db.InserirDados();
         }
 
         public IConfiguration Configuration { get; }
@@ -40,7 +31,6 @@ namespace el_sn_marcelo_web
             services.AddHttpContextAccessor();
             services.AddHttpClient<APIClient>()
                            .SetHandlerLifetime(TimeSpan.FromMinutes(5));
-            //.AddPolicyHandler(GetRetryPolicy());
 
             services.AddAuthentication(options =>
             {
@@ -53,8 +43,9 @@ namespace el_sn_marcelo_web
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     options =>
                     {
-                        options.ExpireTimeSpan = TimeSpan.FromMinutes(60),
+                        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                         options.LoginPath = "/Login";
+                        options.AccessDeniedPath = "/unauthorized";
                     }
                 );
         }
@@ -87,25 +78,6 @@ namespace el_sn_marcelo_web
                             name: "default",
                             pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        private IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
-        {
-            Random jitterer = new Random();
-            var retryWithJitterPolicy = HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .OrResult(c => c.StatusCode == System.Net.HttpStatusCode.NotFound)
-                .OrResult(c => c.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                .WaitAndRetryAsync(6,
-                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(1, retryAttempt))
-                                  + TimeSpan.FromMilliseconds(jitterer.Next(0, 100)),
-                    onRetry: (outcome, timespan, retryAttempt, context) =>
-                    {
-                        //Log.Information($"Delay de {timespan.TotalMilliseconds}ms, e fazendo retry número {retryAttempt}.");
-                    }
-                );
-
-            return retryWithJitterPolicy;
         }
     }
 }

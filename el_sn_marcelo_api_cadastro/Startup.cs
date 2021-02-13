@@ -36,8 +36,10 @@ namespace el_sn_marcelo_api_cadastro
             services.AddScoped<IDatabasePort, DapperConnection>();
             services.AddScoped<ICadastroClientePort, CadastroCliente>();
             services.AddScoped<ICadastroOperadorPort, CadastroOperador>();
+            services.AddScoped<ICadastroMarcaPort, CadastroMarca>();
             services.AddScoped<IBuscaClientePort, BuscaCliente>();
             services.AddScoped<IBuscaOperadorPort, BuscaOperador>();
+            services.AddScoped<IBuscaMarcaPort, BuscaMarca>();
             services.AddMvc(options => options.Filters.Add(new DefaultExceptionFilter()));
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);

@@ -25,7 +25,7 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database
         {
             using (SqlTransaction trans = conn.BeginTransaction())
             {
-                var id = await conn.QueryAsync<int>(sql, param, trans, 60, System.Data.CommandType.Text);
+                var id = await conn.QueryAsync<int>(sql + "; SELECT CAST(SCOPE_IDENTITY() as int)", param, trans, 60, System.Data.CommandType.Text);
                 trans.Commit();
                 return id.AsList().Single();
             }

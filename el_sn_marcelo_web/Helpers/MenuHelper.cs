@@ -18,7 +18,7 @@ namespace el_sn_marcelo_web.Helpers
                                 Cadastros
                             </a>
                             <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                <a class='dropdown-item' href='#'>Marcas</a>
+                                <a class='dropdown-item' href='/Cadastros/Marca'>Marcas</a>
                                 <a class='dropdown-item' href='#'>Modelos</a>
                                 <a class='dropdown-item' href='#'>Veiculos</a>
                             </div>
@@ -33,9 +33,14 @@ namespace el_sn_marcelo_web.Helpers
             if (html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 var matricula = html.ViewContext.HttpContext.User.IsInRole("OPERADOR") ? $"( {html.ViewContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id").Value} )" : "";
-                var menu = $@"<li class='nav - item'>
-                              <a class='nav-link text-dark' asp-area='' asp-page='#' style='border-bottom-style: inset;'>Olá, {html.ViewContext.HttpContext.User.Identity.Name}{matricula}</a>
-                              </li>";
+                var menu = $@"<ul class='navbar-nav ml-auto'>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='#'>Olá, {html.ViewContext.HttpContext.User.Identity.Name}{matricula}</a>
+                                </li>
+                                <li class='nav-item'>
+                                    <a class='nav-link' href='../usuario/logout'>Sair</a>
+                                </li>
+                              </ul>";
                 return new HtmlString(menu);
             }
             else
@@ -49,7 +54,7 @@ namespace el_sn_marcelo_web.Helpers
             if (!html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 menu = @"<li class='nav-item'>
-                              <a class='nav-link text-dark' href='/Login'>Login</a>
+                              <a class='nav-link' href='/Login'>Login</a>
                             </li>";
             }
             return html.Raw(menu);
@@ -61,22 +66,10 @@ namespace el_sn_marcelo_web.Helpers
             if (!html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 menu = @"<li class='nav-item'>
-                              <a class='nav-link text-dark' href='/Cadastro'>Cadastre-se</a>
+                              <a class='nav-link' href='/Cadastro'>Cadastre-se</a>
                             </li>";
             }
             return html.Raw(menu);
-        }
-
-        public static IHtmlContent MostrarLogout(this IHtmlHelper html)
-        {
-            string menu = "";
-            if (html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
-            {
-                menu = @"<li class='nav-item'>
-                              <a class='nav-link text-dark' href='../usuario/logout'>Sair</a>" +
-                           "</li>";
-            }
-            return new HtmlString(menu);
         }
     }
 }
