@@ -4,7 +4,7 @@ Disclaimer:
 
 Antes de começarmos, vamos esclarecer alguns pontos...
 
-Podemos chamar esta entrega de um MVP. Ela não esta com todas as features propostas, mas podemos considerar como uma entrega que agraga bastante valor ao projeto.
+Podemos chamar esta entrega de um MVP. Ela não esta com todas as features propostas, mas podemos considerar como uma entrega que agrega bastante valor ao projeto.
 As funcionalidades de vitrine, login e cadastro de usuários e cadastros de marca, modelo e veiculos estão presentens, bem como a visualização da vitrine principal,
 com todos os veiculos cadastrados, separados por categoria, facilitando a visualização do cliente.
 As features de autenticação e autorização também estão contempladas nesta entrega.
