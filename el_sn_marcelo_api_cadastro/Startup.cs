@@ -1,11 +1,11 @@
-using el_sn_marcelo_api_cadastro.Filters;
-using el_sn_marcelo_api_cadastro_application.Ports.Database;
-using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database;
-using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database.BuscaCliente;
-using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database.BuscaOperador;
-using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database.CadastroCliente;
-using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database.CadastroOperador;
-using el_sn_marcelo_api_cadastro_infrastructure.Authorization;
+using el_sn_marcelo_api.Filters;
+using el_sn_marcelo_api_application.Ports.Database;
+using el_sn_marcelo_api_infrastructure.Adapter.Database;
+using el_sn_marcelo_api_infrastructure.Adapter.Database.BuscaCliente;
+using el_sn_marcelo_api_infrastructure.Adapter.Database.BuscaOperador;
+using el_sn_marcelo_api_infrastructure.Adapter.Database.CadastroCliente;
+using el_sn_marcelo_api_infrastructure.Adapter.Database.CadastroOperador;
+using el_sn_marcelo_api_infrastructure.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +18,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace el_sn_marcelo_api_cadastro
+namespace el_sn_marcelo_api
 {
     public class Startup
     {
@@ -69,12 +69,12 @@ namespace el_sn_marcelo_api_cadastro
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "el_sn_marcelo_api_cadastro",
+                    Title = "el_sn_marcelo_api",
                     Description = "API de cadastros",
                     Version = "v1"
                 });
 
-                var apiPath = Path.Combine(AppContext.BaseDirectory, "el_sn_marcelo_api_cadastro.xml");
+                var apiPath = Path.Combine(AppContext.BaseDirectory, "el_sn_marcelo_api.xml");
                 c.IncludeXmlComments(apiPath);
             });
         }
@@ -102,7 +102,7 @@ namespace el_sn_marcelo_api_cadastro
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "el_sn_marcelo_api_cadastro");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "el_sn_marcelo_api");
             });
         }
     }

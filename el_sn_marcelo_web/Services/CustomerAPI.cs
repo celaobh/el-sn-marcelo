@@ -1,8 +1,6 @@
-﻿using el_sn_marcelo_api_cadastro_infrastructure.Models.Request;
+﻿using el_sn_marcelo_web.Models;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;

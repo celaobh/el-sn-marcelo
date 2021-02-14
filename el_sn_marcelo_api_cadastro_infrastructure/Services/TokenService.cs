@@ -1,13 +1,12 @@
-﻿using el_sn_marcelo_api_cadastro_infrastructure.Authorization;
-using el_sn_marcelo_api_cadastro_infrastructure.Models;
+﻿using el_sn_marcelo_api_infrastructure.Authorization;
+using el_sn_marcelo_api_infrastructure.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace el_sn_marcelo_api_cadastro_infrastructure.Services
+namespace el_sn_marcelo_api_infrastructure.Services
 {
     public class TokenService
     {

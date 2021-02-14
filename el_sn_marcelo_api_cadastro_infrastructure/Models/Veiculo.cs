@@ -1,6 +1,4 @@
-﻿using static el_sn_marcelo_api_cadastro_infrastructure.Comum.Enumerators;
-
-namespace el_sn_marcelo_api_cadastro_infrastructure.Models
+﻿namespace el_sn_marcelo_api_infrastructure.Models
 {
     public class Veiculo
     {

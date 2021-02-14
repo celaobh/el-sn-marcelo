@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 
-namespace el_sn_marcelo_api_cadastro.Filters
+namespace el_sn_marcelo_api.Filters
 {
     public class DefaultExceptionFilter : ExceptionFilterAttribute
     {

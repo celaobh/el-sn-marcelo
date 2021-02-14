@@ -3,7 +3,7 @@
     ViewData["Title"] = "Cadastro";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-    <br />
+<br />
 <h1>Cadastro</h1>
 <br />
 <nav>
@@ -98,10 +98,10 @@
             data: $('#formCadastroCliente').serialize()
         })
             .done(function (obj) {
-                modal_off();
                 if (obj.success) {
                     location = obj.url;
                 } else {
+                    modal_off();
                     $('#warningCadastroCliente').html(obj.msg);
                     $('#warningCadastroCliente').show();
                 }
@@ -110,7 +110,7 @@
     });
 
 
-     $("#formCadastroOperador").on("submit", function (e) {
+    $("#formCadastroOperador").on("submit", function (e) {
         e.preventDefault();
         $('#warningCadastroOperador').hide();
         $.ajax({
@@ -119,10 +119,11 @@
             data: $('#formCadastroOperador').serialize()
         })
             .done(function (obj) {
-                modal_off();
+
                 if (obj.success) {
                     location = obj.url;
                 } else {
+                    modal_off();
                     $('#warningCadastroOperador').html(obj.msg);
                     $('#warningCadastroOperador').show();
                 }

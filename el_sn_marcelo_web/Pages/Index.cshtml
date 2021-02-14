@@ -1,10 +1,12 @@
 ﻿@page
+@using el_sn_marcelo_web.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+<br />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<br />
+
+@Html.Partial("Vitrine/_Vitrine", Tuple.Create<List<Veiculo>, List<Veiculo>, List<Veiculo>>(Model.veiculosBasicos, Model.veiculosCompletos, Model.veiculosLuxo))
+

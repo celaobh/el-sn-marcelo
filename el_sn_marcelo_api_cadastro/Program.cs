@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace el_sn_marcelo_api_cadastro
+namespace el_sn_marcelo_api
 {
     public class Program
     {

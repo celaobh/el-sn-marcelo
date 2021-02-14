@@ -1,4 +1,4 @@
-﻿using el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database;
+﻿using el_sn_marcelo_api_infrastructure.Adapter.Database;
 
 
 namespace el_sn_marcelo_web

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace el_sn_marcelo_api_cadastro_infrastructure.Models.Request
+﻿namespace el_sn_marcelo_api_infrastructure.Models.Request
 {
     public class Operador
     {

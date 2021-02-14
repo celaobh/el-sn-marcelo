@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using el_sn_marcelo_web.Models;
+﻿using el_sn_marcelo_web.Models;
 using el_sn_marcelo_web.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace el_sn_marcelo_web.Controllers
 {
@@ -24,6 +22,17 @@ namespace el_sn_marcelo_web.Controllers
                 return new { success = true };
             else
                 return new { success = false, msg = "Não foi possível cadastrar o veiculo." };
+        }
+
+        public async Task<List<Veiculo>> ListarVeiculosAsync()
+        {
+            var retorno = await _vehicleAPI.GetVeiculos();
+            if (retorno != null)
+            {
+                return await JsonSerializer.DeserializeAsync<List<Veiculo>>(retorno);
+            }
+            else
+                return null;
         }
 
         public async Task<dynamic> ListarVeiculosPorMarca(int id_marca)

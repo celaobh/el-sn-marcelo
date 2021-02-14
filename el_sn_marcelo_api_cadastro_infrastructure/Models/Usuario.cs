@@ -1,10 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
-using static el_sn_marcelo_api_cadastro_infrastructure.Comum.Enumerators;
 
-namespace el_sn_marcelo_api_cadastro_infrastructure.Models
+namespace el_sn_marcelo_api_infrastructure.Models
 {
     public class Usuario
     {
@@ -46,7 +44,7 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Models
                     numero = this.endereco.numero
                 };
             }
-            else if(this.matricula.HasValue)
+            else if (this.matricula.HasValue)
                 novoUsuario.matricula = this.matricula;
 
             return novoUsuario;

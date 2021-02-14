@@ -1,12 +1,7 @@
 ﻿using el_sn_marcelo_web.Models;
 using el_sn_marcelo_web.Services;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 

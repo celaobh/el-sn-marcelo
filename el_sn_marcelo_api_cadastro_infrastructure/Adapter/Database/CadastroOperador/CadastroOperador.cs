@@ -1,11 +1,9 @@
-﻿using Dapper;
-using el_sn_marcelo_api_cadastro_application.Ports.Database;
-using el_sn_marcelo_api_cadastro_infrastructure.Models;
+﻿using el_sn_marcelo_api_application.Ports.Database;
 using System.Threading.Tasks;
 
-namespace el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database.CadastroOperador
+namespace el_sn_marcelo_api_infrastructure.Adapter.Database.CadastroOperador
 {
-    public class CadastroOperador:ICadastroOperadorPort
+    public class CadastroOperador : ICadastroOperadorPort
     {
         private IDatabasePort _database;
         public CadastroOperador(IDatabasePort database)

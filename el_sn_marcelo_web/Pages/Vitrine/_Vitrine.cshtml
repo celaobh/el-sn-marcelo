@@ -1,0 +1,78 @@
+﻿@using el_sn_marcelo_web.Models
+@model Tuple<List<Veiculo>, List<Veiculo>, List<Veiculo>>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<p class="h4 text-left">Modelos Básicos</p>
+<br />
+<div class="container-fluid mobile-card-container">
+    <div class="row text-center flex-nowrap flex-sm-wrap">
+
+        @{ foreach (var item in Model.Item1)
+            {
+                <div class="p-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@item.foto1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.marca.nome - @item.modelo.nome</h5>
+                            <p class="card-text">A partir de R$@item.valor_hora /hora.</p>
+                            <a href="#" class="btn btn-primary">Fazer Simulação</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+<br />
+<br />
+<p class="h4 text-left">Modelos Completos</p>
+<br />
+<div class="container-fluid mobile-card-container">
+    <div class="row text-center flex-nowrap flex-sm-wrap">
+
+        @{ foreach (var item in Model.Item2)
+            {
+                <div class="p-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@item.foto1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.marca.nome - @item.modelo.nome</h5>
+                            <p class="card-text">A partir de R$@item.valor_hora /hora.</p>
+                            <a href="#" class="btn btn-primary">Fazer Simulação</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+<br />
+<br />
+<p class="h4 text-left">Modelos Luxo</p>
+<br />
+<div class="container-fluid mobile-card-container">
+    <div class="row text-center flex-nowrap flex-sm-wrap">
+
+        @{ foreach (var item in Model.Item3)
+            {
+                <div class="p-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@item.foto1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.marca.nome - @item.modelo.nome</h5>
+                            <p class="card-text">A partir de R$@item.valor_hora /hora.</p>
+                            <a href="#" class="btn btn-primary">Fazer Simulação</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+

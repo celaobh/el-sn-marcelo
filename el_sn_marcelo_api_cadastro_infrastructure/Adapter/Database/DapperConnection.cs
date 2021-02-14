@@ -1,13 +1,11 @@
 ﻿using Dapper;
-using el_sn_marcelo_api_cadastro_application.Ports.Database;
-using Microsoft.Data.Sqlite;
+using el_sn_marcelo_api_application.Ports.Database;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database
+namespace el_sn_marcelo_api_infrastructure.Adapter.Database
 {
     public class DapperConnection : IDatabasePort
     {

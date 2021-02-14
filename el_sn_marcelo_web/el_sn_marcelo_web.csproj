@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DBInitializer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.2" />
@@ -21,11 +25,6 @@
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0-preview1.19506.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0-preview1-19509-03" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\el_sn_marcelo_api_cadastro_application\el_sn_marcelo_api_cadastro_application.csproj" />
-    <ProjectReference Include="..\el_sn_marcelo_api_cadastro_infrastructure\el_sn_marcelo_api_cadastro_infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

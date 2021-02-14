@@ -1,4 +1,4 @@
-﻿namespace el_sn_marcelo_api_cadastro_infrastructure.Comum
+﻿namespace el_sn_marcelo_api_infrastructure.Comum
 {
     public static class Enumerators
     {

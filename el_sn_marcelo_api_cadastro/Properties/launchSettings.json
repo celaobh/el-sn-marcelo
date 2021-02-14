@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "el_sn_marcelo_api_cadastro": {
+    "el_sn_marcelo_api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

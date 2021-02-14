@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\el_sn_marcelo_api_cadastro_application\el_sn_marcelo_api_cadastro_application.csproj" />
+    <ProjectReference Include="..\el_sn_marcelo_api_cadastro_application\el_sn_marcelo_api_application.csproj" />
   </ItemGroup>
 
 </Project>

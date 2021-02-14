@@ -62,7 +62,7 @@ namespace el_sn_marcelo_web.Helpers
             if (!html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 menu = @"<li class='nav-item'>
-                              <a class='nav-link' href='/Login'>Login</a>
+                              <a class='nav-link' href='/Usuario/Login'>Login</a>
                             </li>";
             }
             return html.Raw(menu);
@@ -74,7 +74,7 @@ namespace el_sn_marcelo_web.Helpers
             if (!html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 menu = @"<li class='nav-item'>
-                              <a class='nav-link' href='/Cadastro'>Cadastre-se</a>
+                              <a class='nav-link' href='/Usuario/Cadastro'>Cadastre-se</a>
                             </li>";
             }
             return html.Raw(menu);

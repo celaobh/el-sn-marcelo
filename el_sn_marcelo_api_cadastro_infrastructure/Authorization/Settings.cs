@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace el_sn_marcelo_api_cadastro_infrastructure.Authorization
+﻿namespace el_sn_marcelo_api_infrastructure.Authorization
 {
     public static class Settings
     {
