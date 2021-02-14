@@ -13,8 +13,12 @@ Infelizmente não foi possível finalizar o desenvolvimento dentro do timebox pr
 
 # Vamos ao que interessa
 
-### BACKEND
+### BACK-END
 
+Aqui vamos falar sobre os highlights do backend.
+
+
+#### Arquitetura
 Como arquitetura, escolhi o padrão Hexagonal.
 Tenho certa admirassão por este padrão por facilitar o entendimento do código, mesmo em uma simples corrida de olho nos arquivos.
 Claro, alguns vão dizer que poderia atingir o mesmo objetivo com outros padrões, e isso não deixa de ser uma verdade.
@@ -30,7 +34,7 @@ Na camada Application, onde defino os contratos que meus Adapters irão implemen
  
  Essa mesma lógica foi seguida ao implementar o Adapter de comunicação com o banco de dados, que neste momento é minha froteira mais externa com esta aplicação.
  
- #### Mas, Marcelo, qual a vantagem da arquitetura Hexagonal?
+ ####  - Mas, Marcelo, qual a vantagem da arquitetura Hexagonal?
  Antes de responder isso, vou voltar um pouco no que já falamos: sempre vão dizer "mas isso você consegue fazer com o padrão X".
  Sim, já sabemos disso. E mesmo assim preferi escolher o padrão Hexagonal, (PONTO !!!)
  
@@ -89,3 +93,42 @@ Na camada Application, onde defino os contratos que meus Adapters irão implemen
  Juntamente com os retries, é bom adicionarmos um jitter (um numero variável dentro de uma faixa definida) antes de fazermos esta nova solicitação. Isso ajuda a mostrarmos para o servidor que não se trata de um ataque, uma vez que os retries podem acontecer, virtualmente, ao mesmo tempo.
  
  
+ ### FRONT-END
+
+Aqui vamos falar sobre os highlights do front-end.
+
+
+#### Tecnologia
+
+Durante nossa carreira fazemos algumas escolhas e há algum tempo atrás, havia decidido que o melhor caminho pra mim seria focar em back-end. Sendo assim, fazia algum tempo que não mexia com front, então busquei desenvolver em algo que realmente me sentisse mais seguro. Utilzei o ASP.NET CORE Razor Pages. Não fiz modificações no padrão arquitetural criado automaticamente pelo template do Visual Studio, então não compensa discorrermos sobre o assunto.
+Cheguei a começar o projeto com o Blazor, mas o tempo não seria suficiente para passar pela curva de aprendizado e poderia prejudicar ainda mais minha entrega.
+
+
+#### Authentication/Authorization
+
+No front utilizei o AspNetCore.Authentication. Com ele consigo armazenar as informações do usuário, como o token que recebo da API outros claims, que me são bastante úteis durante o processo. A gestão de validade do acesso é feita toda automaticamente pela aplicação, sendo necessárias algumas configurações, como o tempo de expiração do cookie e se ele será revalidado a cada nova iteração do usuário ou não.
+
+A autorização é feita de modo semelhante ao back-end. Para algumas páginas restrinjo o acesso do usuário com base em seu role. O cliente não consegue ver as páginas de cadastro, nem se informar a url diretamente no browser. COm ajudar de HTML Helpers decido se exibo ou não os menus de cadastro para o usuário logado, também com base em seu role.
+
+#### HTTPClientFactory
+
+A estratégia de HTTPClientFactory também foi aplicada aqui.
+
+#### Bootstrap
+
+Para dar aquele tapa no visual do site, usei a versão 4 do bootstrap. Não sou um "ás" do CSS, então toda ajuda é muito bem vinda.
+
+
+#### JQuery
+
+Utilizei o JQuery para fazer manipulação de requisições e de elementos do DOM. Algumas pessoas vêm desencorajando o uso do JQuery, mas como trabalhei com esse framwork por muito tempo e ele continua ativo e com uma comunidade grande, decidi por coninuar a usá-lo.
+
+
+
+### FINALIZANDO
+
+Tentei esclarecer o máximo sobre o que usei para fazer este projeto e como eu fiz. Quis trazer o assunto com uma abordagem mais leve e descontraida. Espero que, mesmo não tendo concluido todo o teste, que minha entrega seja considerada.
+
+Ah, saibam que não faltou empenho da minha parte. Todo o processo foi tratado com extrema importância, para mim e para minha carreira.
+
+Grande abraço!
