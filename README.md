@@ -92,6 +92,9 @@ Na camada Application, onde defino os contratos que meus Adapters irão implemen
  Claro que não podemos ficar fazendo retries infinitos para um erro 401 ou 404, por exemplo, mas se tivermos um timeout, um unauthorized ou até mesmo um erro 500, pode valer a pena fazer uma nova tentativa.
  Juntamente com os retries, é bom adicionarmos um jitter (um numero variável dentro de uma faixa definida) antes de fazermos esta nova solicitação. Isso ajuda a mostrarmos para o servidor que não se trata de um ataque, uma vez que os retries podem acontecer, virtualmente, ao mesmo tempo.
  
+ #### Async/Await
+ 
+ Importante para que aplicação não fique travada, pricipalmente, ao esperar operações de I/O e que demandam espera de resposta. Utilziado em todos os métodos para garantir que as threads não fiquem travadas, ajudando em uma performance mais positiva.
  
  ### FRONT-END
 
