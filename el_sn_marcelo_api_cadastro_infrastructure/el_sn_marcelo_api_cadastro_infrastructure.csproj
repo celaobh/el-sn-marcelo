@@ -20,8 +20,4 @@
     <ProjectReference Include="..\el_sn_marcelo_api_cadastro_application\el_sn_marcelo_api_cadastro_application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Adapter\Database\CadastroVeiculo\" />
-  </ItemGroup>
-
 </Project>

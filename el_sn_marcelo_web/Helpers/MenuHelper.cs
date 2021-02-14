@@ -20,7 +20,7 @@ namespace el_sn_marcelo_web.Helpers
                             <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                                 <a class='dropdown-item' href='/Cadastros/Marca'>Marcas</a>
                                 <a class='dropdown-item' href='/Cadastros/Modelo'>Modelos</a>
-                                <a class='dropdown-item' href='#'>Veiculos</a>
+                                <a class='dropdown-item' href='/Cadastros/Veiculo'>Veiculos</a>
                             </div>
                         </li>";
                 }
@@ -32,15 +32,23 @@ namespace el_sn_marcelo_web.Helpers
         {
             if (html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                var matricula = html.ViewContext.HttpContext.User.IsInRole("OPERADOR") ? $"( {html.ViewContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id").Value} )" : "";
-                var menu = $@"<ul class='navbar-nav ml-auto'>
-                                <li class='nav-item'>
+                var matricula = html.ViewContext.HttpContext.User.IsInRole("OPERADOR") ? $", Matrícula: {html.ViewContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id").Value}" : "";
+                var menu = $@"<li class='nav-item'>
                                     <a class='nav-link' href='#'>Olá, {html.ViewContext.HttpContext.User.Identity.Name}{matricula}</a>
-                                </li>
-                                <li class='nav-item'>
+                              </li>";
+                return new HtmlString(menu);
+            }
+            else
+                return new HtmlString(string.Empty);
+        }
+
+        public static IHtmlContent MostrarLogout(this IHtmlHelper html)
+        {
+            if (html.ViewContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                var menu = $@"<li class='nav-item'>
                                     <a class='nav-link' href='../usuario/logout'>Sair</a>
-                                </li>
-                              </ul>";
+                                </li>";
                 return new HtmlString(menu);
             }
             else

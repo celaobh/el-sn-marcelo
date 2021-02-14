@@ -1,4 +1,5 @@
 ﻿using el_sn_marcelo_web.Models;
+using el_sn_marcelo_web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,16 +14,16 @@ namespace el_sn_marcelo_web.Controllers
 {
     public class MarcaController : Controller
     {
-        private APIClient _client;
+        private BrandAPI _brandAPI;
 
-        public MarcaController(APIClient client)
+        public MarcaController(BrandAPI brandAPI)
         {
-            _client = client;
+            _brandAPI = brandAPI;
         }
 
         public async Task<dynamic> CadastrarMarca(Marca obj)
         {
-            var retorno = await _client.PostMarcaAsync(obj);
+            var retorno = await _brandAPI.PostMarcaAsync(obj);
             if (retorno != null)
                 return new { success = true };
             else
@@ -31,7 +32,7 @@ namespace el_sn_marcelo_web.Controllers
 
         public async Task<dynamic> ListarMarcas()
         {
-            var retorno = await _client.GetMarcasAsync();
+            var retorno = await _brandAPI.GetMarcasAsync();
             if (retorno != null)
             {
                 return new { success = true, obj = await JsonSerializer.DeserializeAsync<List<Marca>>(retorno) };

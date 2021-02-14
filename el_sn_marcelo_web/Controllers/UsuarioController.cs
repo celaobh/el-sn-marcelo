@@ -1,4 +1,5 @@
 ﻿using el_sn_marcelo_web.Models;
+using el_sn_marcelo_web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +13,13 @@ namespace el_sn_marcelo_web.Controllers
 {
     public class UsuarioController : Controller
     {
-        private APIClient _client;
+        private AuthenticateAPI _authenticateAPI;
+        private CustomerAPI _customerAPI;
 
-        public UsuarioController(APIClient client)
+        public UsuarioController(AuthenticateAPI authenticateAPI, CustomerAPI customerAPI)
         {
-            _client = client;
+            _authenticateAPI = authenticateAPI;
+            _customerAPI = customerAPI;
         }
 
         public IActionResult Index()
@@ -24,12 +27,10 @@ namespace el_sn_marcelo_web.Controllers
             return View();
         }
 
-        public async Task<string> ListaUsuarios() => await _client.GetAsync();
-
         public async Task<dynamic> CadastrarCliente(Cliente obj)
         {
             obj.cpf = obj.cpf.Replace(".", "").Replace("-", "");
-            await _client.SignUpAsync(obj);
+            await _customerAPI.SignUpAsync(obj);
             var retorno = await Autenticar(obj.senha, "", obj.cpf);
             if (retorno.success)
                 return new { success = true, url = "/" };
@@ -40,7 +41,7 @@ namespace el_sn_marcelo_web.Controllers
 
         public async Task<dynamic> CadastrarOperador(Operador obj)
         {
-            var matricula = await _client.SignUpAsync(obj);
+            var matricula = await _customerAPI.SignUpAsync(obj);
             if (matricula != null)
             {
                 var retorno = await Autenticar(obj.senha, await JsonSerializer.DeserializeAsync<string>(matricula));
@@ -57,7 +58,7 @@ namespace el_sn_marcelo_web.Controllers
         [HttpPost]
         public async Task<dynamic> Autenticar(string senha, string matricula = "", string cpf = "")
         {
-            var retorno = await _client.AuthorizeAsync(cpf.Replace(".", "").Replace("-", ""), senha, matricula);
+            var retorno = await _authenticateAPI.AuthenticateAsync(cpf.Replace(".", "").Replace("-", ""), senha, matricula);
             if (retorno != null)
             {
                 Usuario usuario = await JsonSerializer.DeserializeAsync<Usuario>(retorno);

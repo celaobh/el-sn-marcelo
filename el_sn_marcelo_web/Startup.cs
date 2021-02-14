@@ -1,3 +1,4 @@
+using el_sn_marcelo_web.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,10 +28,17 @@ namespace el_sn_marcelo_web
         {
             services.AddControllers();
             services.AddRazorPages();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpContextAccessor();
-            services.AddHttpClient<APIClient>()
+            services.AddHttpClient<AuthenticateAPI>()
                            .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddHttpClient<CustomerAPI>()
+                           .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddHttpClient<BrandAPI>()
+                      .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddHttpClient<VehicleAPI>()
+                      .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            services.AddHttpClient<ModelAPI>()
+                      .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
             services.AddAuthentication(options =>
             {

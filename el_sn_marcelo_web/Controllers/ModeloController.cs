@@ -1,4 +1,5 @@
 ﻿using el_sn_marcelo_web.Models;
+using el_sn_marcelo_web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,16 +14,16 @@ namespace el_sn_marcelo_web.Controllers
 {
     public class ModeloController : Controller
     {
-        private APIClient _client;
+        private ModelAPI _modelAPI;
 
-        public ModeloController(APIClient client)
+        public ModeloController(ModelAPI modelAPI)
         {
-            _client = client;
+            _modelAPI = modelAPI;
         }
 
         public async Task<dynamic> CadastrarModelo(Modelo obj)
         {
-            var retorno = await _client.PostModeloAsync(obj);
+            var retorno = await _modelAPI.PostModeloAsync(obj);
             if (retorno != null)
                 return new { success = true };
             else
@@ -31,7 +32,7 @@ namespace el_sn_marcelo_web.Controllers
 
         public async Task<dynamic> ListarModelos(int id_marca)
         {
-            var retorno = await _client.GetModeloAsync(id_marca);
+            var retorno = await _modelAPI.GetModeloAsync(id_marca);
             if (retorno != null)
             {
                 return new { success = true, obj = await JsonSerializer.DeserializeAsync<List<Marca>>(retorno) };

@@ -1,0 +1,231 @@
+﻿@page
+@model el_sn_marcelo_web.Pages.Cadastros.VeiculoModel
+@{
+    ViewData["Title"] = "Veiculo";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<br />
+<h1>Veiculo</h1>
+<br />
+
+<div class="tab-content" id="nav-tabContent">
+
+    <br />
+    <div id="warningCadastroVeiculo" class="alert alert-warning" role="alert" style="display:none">
+
+    </div>
+    <br />
+    <form id="formCadastroVeiculo">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label>Placa</label>
+            <input type="text" class="form-control" name="placa" id="txtPlaca" aria-describedby="" placeholder="Placa">
+        </div>
+        <div class="form-group">
+            <label>Marca</label>
+            <select class="form-control" name="id_marca" id="ddlIdMarca">
+                <option value="">- Selecione -</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Modelo</label>
+            <select class="form-control" name="id_modelo" id="ddlIdModelo">
+                <option value="">- Selecione -</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ano</label>
+            <input type="number" class="form-control" name="ano" id="txtAno" aria-describedby="" placeholder="Ano">
+        </div>
+        <div class="form-group">
+            <label>Valor/Hora</label>
+            <input type="text" class="form-control money" name="valor_hora" id="txtValorHora" aria-describedby="" placeholder="Valor/Hora">
+        </div>
+        <div class="form-group">
+            <label>Combustivel</label>
+            <select class="form-control" name="combustivel" id="ddlCombustivel">
+                <option value="">- Selecione -</option>
+                <option value="Gasolina">Gasolina</option>
+                <option value="Álcool">Álcool</option>
+                <option value="Diesel">Diesel</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Limite do porta malas</label>
+            <input type="number" class="form-control" name="limite_porta_malas" id="txtLimitePortaMalas" aria-describedby="" placeholder="Limite Porta Malas">
+        </div>
+        <div class="form-group">
+            <label>Categoria</label>
+            <select class="form-control" name="categoria" id="ddlCategoria">
+                <option value="">- Selecione -</option>
+                <option value="Gasolina">Básico</option>
+                <option value="Álcool">Completo</option>
+                <option value="Diesel">Luxo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="d-flex flex-column flex-sm-row flex-lg-column">
+                <div class="p-2">
+                    <label for="exampleInputPassword1">URL Foto 1</label>
+                    <input type="text" class="form-control" name="foto1" id="txtFoto1" placeholder="URL">
+                </div>
+                <div class="p-2">
+                    <label for="exampleInputPassword1">URL Foto 2</label>
+                    <input type="text" class="form-control" name="foto2" id="txtFoto2" placeholder="URL">
+                </div>
+                <div class="p-2">
+                    <label for="exampleInputPassword1">URL Foto 3</label>
+                    <input type="text" class="form-control" name="foto3" id="txtFoto3" placeholder="URL">
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row flex-lg-row divImgFoto">...</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnCadastroVeiculo">Cadastrar</button>
+    </form>
+    <br />
+    <table id="tableVeiculos" class="table" style="display:none">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        ListarMarcas();
+    });
+
+    $("#formCadastroVeiculo").on("submit", function (e) {
+        e.preventDefault();
+        $('#warningCadastroVeiculo').hide();
+        $.ajax({
+            method: "POST",
+            url: "../veiculo/CadastrarVeiculo",
+            async: true,
+            datatype: 'json',
+            data: $('#formCadastroVeiculo').serialize()
+        })
+            .done(function (obj) {
+                modal_off();
+                if (obj.success) {
+                    clear();
+                    ListarMarcas();
+                } else {
+                    $('#warningCadastroVeiculo').html(obj.msg);
+                    $('#warningCadastroVeiculo').show();
+                }
+            });
+
+    });
+
+    $("#ddlIdMarca").on("change", function () {
+        var selected = $('#ddlIdMarca').find(":selected").val();
+        if (selected != "")
+            ListarModelos($('#ddlIdMarca').find(":selected").val());
+        else {
+            $('#ddlIdModelo')
+                .find('option')
+                .remove()
+                .end()
+                .append('<option value="">- Selecione -</option>')
+                .val('');
+        }
+
+    });
+
+    $('#txtFoto1').change(function () {
+        var a = $(this).val();
+        var new_img = '<div class="p-2"><img src=' + a + ' style="height:150px;width:150px"></div>';
+        $('.divImgFoto').append(new_img);
+    });
+
+
+    $('#txtFoto2').change(function () {
+        var a = $(this).val();
+        var new_img = '<div class="p-2"><img src=' + a + ' style="height:150px;width:150px"></div>';
+        $('.divImgFoto').append(new_img);
+    });
+
+
+    $('#txtFoto3').change(function () {
+        var a = $(this).val();
+        var new_img = '<div class="p-2"><img src=' + a + ' style="height:150px;width:150px"></div>';
+        $('.divImgFoto').append(new_img);
+    });
+
+    function ListarMarcas() {
+        $('#ddlIdMarca')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="">- Selecione -</option>')
+            .val('');
+        $.ajax({
+            method: "GET",
+            url: "../Marca/ListarMarcas",
+            async: true,
+            datatype: 'json',
+        })
+            .done(function (obj) {
+                debugger;
+                $.each(obj.obj, function (index, value) {
+                    var o = new Option(value.nome, value.id);
+                    $(o).html(value.nome);
+                    $("#ddlIdMarca").append(o);
+                });
+            });
+
+    }
+
+    function ListarModelos(id_marca) {
+        $('#ddlIdModelo')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="">- Selecione -</option>')
+            .val('');
+        $.ajax({
+            method: "GET",
+            url: "../Modelo/ListarModelos",
+            async: true,
+            data: { id_marca: id_marca }
+        })
+            .done(function (obj) {
+                $.each(obj.obj, function (index, value) {
+                    var o = new Option(value.nome, value.id);
+                    $(o).html(value.nome);
+                    $("#ddlIdModelo").append(o);
+                });
+            });
+
+    }
+
+    function clear() {
+
+        $("input").each(function (item) {
+            $(this).val("");
+        });
+
+        $('select')
+            .find('option')
+            .remove()
+            .end()
+            .append('<option value="">- Selecione -</option>')
+            .val('');
+
+        $("#tableVeiculos tbody").html("");
+
+        $('.divImgFoto').html("");
+
+    }
+</script>
+

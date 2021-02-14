@@ -38,10 +38,12 @@ namespace el_sn_marcelo_api_cadastro
             services.AddScoped<ICadastroOperadorPort, CadastroOperador>();
             services.AddScoped<ICadastroMarcaPort, CadastroMarca>();
             services.AddScoped<ICadastroModeloPort, CadastroModelo>();
+            services.AddScoped<ICadastroVeiculoPort, CadastroVeiculo>();
             services.AddScoped<IBuscaClientePort, BuscaCliente>();
             services.AddScoped<IBuscaOperadorPort, BuscaOperador>();
             services.AddScoped<IBuscaMarcaPort, BuscaMarca>();
             services.AddScoped<IBuscaModeloPort, BuscaModelo>();
+            services.AddScoped<IBuscaVeiculoPort, BuscaVeiculo>();
             services.AddMvc(options => options.Filters.Add(new DefaultExceptionFilter()));
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);

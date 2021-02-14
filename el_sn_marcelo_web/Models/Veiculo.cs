@@ -1,6 +1,9 @@
-﻿using static el_sn_marcelo_api_cadastro_infrastructure.Comum.Enumerators;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace el_sn_marcelo_api_cadastro_infrastructure.Models
+namespace el_sn_marcelo_web.Models
 {
     public class Veiculo
     {
@@ -21,29 +24,5 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Models
         public string foto1 { get; set; }
         public string foto2 { get; set; }
         public string foto3 { get; set; }
-    }
-
-    public class Modelo
-    {
-        public Modelo()
-        {
-
-        }
-
-        public int id { get; set; }
-        public int id_marca { get; set; }
-        public string nome { get; set; }
-    }
-
-    public class Marca
-    {
-        public Marca()
-        {
-
-        }
-
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string logotipo { get; set; }
     }
 }

@@ -25,15 +25,14 @@
             <!-- notice position-absolute on the brand which allows it to center-->
             <span class="navbar-brand position-absolute"><a class="navbar-brand" asp-area="" asp-page="/Index">el_sn_marcelo_web</a></span>
             <div class="navbar-collapse collapse" id="navbar">
-                <ul class="navbar-nav justify-content-center">
-                    <li class="nav-item text-center">
-                        <a class="nav-link" asp-page="/Index">Home</a>
-                    </li>
+                <ul class="navbar-nav ml-auto">
+                    @Html.MostrarUsuario()
                     @Html.MostrarLogin()
                     @Html.MostrarCadastre()
                     @Html.MostrarCadastros()
+                    @Html.MostrarLogout()
                 </ul>
-                @Html.MostrarUsuario()
+             
             </div>
         </nav>
     </header>
