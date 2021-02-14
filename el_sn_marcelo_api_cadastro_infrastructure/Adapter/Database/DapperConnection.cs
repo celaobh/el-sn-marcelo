@@ -47,6 +47,11 @@ namespace el_sn_marcelo_api_cadastro_infrastructure.Adapter.Database
             return await conn.QueryAsync<T>(sql, param, null, 60, System.Data.CommandType.Text);
         }
 
+        public async Task<dynamic> QueryMultipleAsync(string sql, object param = null)
+        {
+            return await conn.QueryMultipleAsync(sql, param, null, 60, System.Data.CommandType.Text);
+        }
+
         public async Task<dynamic> QueryAsync<T1, T2, TReturn>(string sql, Func<T1, T2, TReturn> map, string splitOn = "Id", object param = null)
         {
             // var t = await conn.QueryAsync<T1, T2, TReturn>(sql, map, param, null, true, splitOn, 60, System.Data.CommandType.Text);

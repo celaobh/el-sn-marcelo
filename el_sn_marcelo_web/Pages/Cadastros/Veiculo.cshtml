@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-sm-row flex-lg-row divImgFoto">...</div>
+            <div class="d-flex flex-column flex-sm-row flex-lg-row divImgFoto"></div>
         </div>
         <button type="submit" class="btn btn-primary" id="btnCadastroVeiculo">Cadastrar</button>
     </form>
@@ -129,8 +129,11 @@
 
     $("#ddlIdMarca").on("change", function () {
         var selected = $('#ddlIdMarca').find(":selected").val();
-        if (selected != "")
+        if (selected != "") {
+            $("#tableVeiculos tbody").html("");
             ListarModelos($('#ddlIdMarca').find(":selected").val());
+            ListarVeiculos($('#ddlIdMarca').find(":selected").val());
+        }
         else {
             $('#ddlIdModelo')
                 .find('option')
@@ -205,6 +208,24 @@
                     $(o).html(value.nome);
                     $("#ddlIdModelo").append(o);
                 });
+            });
+
+    }
+
+      function ListarVeiculos(id_marca) {
+        $.ajax({
+            method: "GET",
+            url: "../Veiculo/ListarVeiculosPorMarca",
+            async: true,
+            data: { id_marca: id_marca }
+        })
+            .done(function (obj) {
+               $.each(obj.obj, function (index, value) {
+                    $("#tableVeiculos tbody").append("<tr><td>" + value.id + "</td><td>" + value.marca.nome + "</td><td>" + value.modelo.nome + "</td><td><img src=" + value.foto1 + " style='height:90px;width:90px'></td></tr>");
+                });
+
+                if ($("#tableVeiculos tbody").html().length > 0)
+                    $("#tableVeiculos").show();
             });
 
     }

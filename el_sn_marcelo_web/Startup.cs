@@ -51,7 +51,7 @@ namespace el_sn_marcelo_web
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     options =>
                     {
-                        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                         options.LoginPath = "/Login";
                         options.AccessDeniedPath = "/unauthorized";
                     }

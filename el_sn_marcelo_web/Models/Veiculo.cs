@@ -24,5 +24,7 @@ namespace el_sn_marcelo_web.Models
         public string foto1 { get; set; }
         public string foto2 { get; set; }
         public string foto3 { get; set; }
+        public Marca marca { get; set; }
+        public Modelo modelo { get; set; }
     }
 }

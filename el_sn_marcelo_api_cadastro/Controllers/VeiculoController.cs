@@ -29,10 +29,10 @@ namespace el_sn_marcelo_api_cadastro.Controllers
         }
 
         [Authorize(Roles = "OPERADOR")]
-        [HttpGet("/marca/{id_marca}")]
+        [HttpGet("marca/{id_marca}")]
         public async Task<IActionResult> GetPorMarca(int id_marca)
         {
-            return Ok(await _buscaVeiculo.BuscaPorMarcaAsync<Veiculo>(id_marca));
+            return Ok(await _buscaVeiculo.BuscaPorMarcaAsync(id_marca));
         }
 
         [Authorize(Roles = "OPERADOR")]
